@@ -239,8 +239,13 @@ for _ in trange(epochs, desc="Epoch"):
     #print("Validation F1-Score: {}".format(f1_score(pred_tags, valid_tags)))
     print()
 
-import joblib
+import pickle 
+with open('/user_data/token_classification/save/model.pickle', 'wb') as f:
+    pickle.dump(model, f)
+'''import joblib
 joblib.dump(model, "/user_data/token_classification/model2")
+model = joblib.load("model2")
+model.eval()'''
 
 test_sentence = """
 In her nearly 250 years of independence, America has endured brutal wars, catastrophic natural disasters and ravaging economic depressions. Through every challenge, she has survived because of a singular focus on the founding principles that launched one of the greatest experiments in human history and that tested the very boundaries of the capabilities of man."""
