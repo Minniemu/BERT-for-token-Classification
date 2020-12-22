@@ -1,7 +1,3 @@
----
-title: 'Project documentation template'
-disqus: hackmd
----
 
 Spacy 教學
 ===
