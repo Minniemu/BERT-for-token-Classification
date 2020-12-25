@@ -20,6 +20,6 @@ The IOB (short for inside, outside, beginning) is a common tagging format for ta
 * nat = Natural Phenomenon
 
 
-> Read more about sequence-diagrams here: http://bramp.github.io/js-sequence-diagrams/
+
 
 
