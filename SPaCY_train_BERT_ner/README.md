@@ -1,6 +1,7 @@
 # 用SPaCY的結果作為訓練資料，重作BERT-ner
 * BERT_ner訓練資料格式
-![](https://i.imgur.com/9S0oyWh.png)
+> ![](https://i.imgur.com/9S0oyWh.png)
+
 * What is POS tagging?
 **其實就是詞性的標記**
 詞性列表：
@@ -76,3 +77,24 @@ WP$    possessivewh-pronoun     whose  所有格；屬有詞
 WRB    wh-abverb    where, when 副詞
 
 可參考以下文章 : https://medium.com/@muddaprince456/categorizing-and-pos-tagging-with-nltk-python-28f2bc9312c3
+
+* Example:
+```
+text = "Hello welcome to the world of to learn Categorizing and POS Tagging with NLTK and Python"
+[('Hello', 'NNP'), 
+	('welcome', 'NN'), 
+	('to', 'TO'), 
+	('the', 'DT'), 
+	('world', 'NN'),
+	 ('of', 'IN'), 
+	 ('to', 'TO'), 
+	 ('learn', 'VB'), 
+	 ('Categorizing', 'NNP'), 
+	 ('and', 'CC'), 
+	 ('POS', 'NNP'), 
+	 ('Tagging', 'NNP'),
+	  ('with', 'IN'), 
+	  ('NLTK', 'NNP'), 
+	  ('and', 'CC'), 
+	  ('Python', 'NNP')]
+```
