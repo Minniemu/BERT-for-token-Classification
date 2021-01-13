@@ -1,6 +1,7 @@
 # 用SPaCY的結果作為訓練資料，重作BERT-ner
 * BERT_ner訓練資料格式
-> ![](https://i.imgur.com/9S0oyWh.png)
+
+>![](https://i.imgur.com/9S0oyWh.png)
 
 * What is POS tagging?
 **其實就是詞性的標記**
@@ -98,3 +99,8 @@ text = "Hello welcome to the world of to learn Categorizing and POS Tagging with
 	  ('and', 'CC'), 
 	  ('Python', 'NNP')]
 ```
+2021.01.13
+---
+1. 本來想直接將原始dataset的token放到SPaCY做Tagging就好，結果發現用biluo_tags_from_offsets(doc, entities)這個函式，會自己重新做斷詞 :exploding_head: ，順序會跑掉
+2. Solution : 手幹 :anguished: 
+
