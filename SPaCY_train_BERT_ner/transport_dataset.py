@@ -58,22 +58,49 @@ with open( 'output.csv', 'w', newline='') as csvfile:
         entities = []
         tokens = []
         pos = []
+        label = []
         for token in doc :
             tokens.append(token.text) #斷詞
             pos.append(token.tag_) #POS 
-        #biluo_tag
+        for i in range(0,len(tokens)): #先將label 初始化為全 O
+            label.append('O')
+        ents = [e.text for e in doc.ents] #放關鍵字
+        l = [ e.label_ for e in doc.ents] #放LABEL
+        for i in range(0,len(ents)): 
+            d = nlp(ents[i]) # d 用來存放抓到的關鍵字
+            t = [] #t 用來存放斷詞的結果
+            for to in d:
+                t.append(to.text) #斷詞
+                print(t)
+                try :
+                    index = tokens.index(t[0]) # 搜尋關鍵字在句子中的位置
+                except ValueError : 
+                    index = 0
+                    pass
+
+                t_len = len(t) #計算關鍵字長度
+                if t_len == 1: #如果關鍵字只有一個字
+                    label[index] = 'B-'+l[i]
+                else : #處理關鍵字超過一個字的
+                    for j in range(0,t_len): 
+                        if j == 0:
+                            label[index] = 'B-'+l[i] #只有第一個字是以B-開頭
+                        else:
+                            label[index+j] = 'I-'+l[i] #其他都是以I-再加上Label
+
+        '''#biluo_tag
         for ent in doc.ents:
             entities.append((ent.start_char, ent.end_char, ent.label_))
-        tags = biluo_tags_from_offsets(doc, entities)
+        tags = biluo_tags_from_offsets(doc, entities)'''
 
         #write in the file
         length = len(tokens)
         for i in range(0,length):
             if i == 0:
                 string = "Sentence: "+str(s)
-                writer.writerow({'Sentence #':string, 'Word': tokens[i], 'POS':pos[i], 'Tag':tags[i]})
+                writer.writerow({'Sentence #':string, 'Word': tokens[i], 'POS':pos[i], 'Tag':label[i]})
             else :
-                writer.writerow({'Sentence #':' ', 'Word': tokens[i], 'POS':pos[i], 'Tag':tags[i]})
+                writer.writerow({'Sentence #':' ', 'Word': tokens[i], 'POS':pos[i], 'Tag':label[i]})
         #write sentence and tag
         '''print("Tokens:",tokens)
         print("Tokens's length=",len(tokens))
