@@ -9,6 +9,7 @@ The IOB (short for inside, outside, beginning) is a common tagging format for ta
 * B- prefix before a tag indicates that the tag is the beginning of a chunk.
 * An O tag indicates that a token belongs to no chunk (outside).
 
+
 2. Tagging:
 * geo = Geographical Entity
 * org = Organization
